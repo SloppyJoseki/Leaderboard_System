@@ -29,8 +29,10 @@ public class AccountManager
         // Checks the username is not already being used by another account
         CsvManager csvManager = new CsvManager();
         String[] csvData = csvManager.readCsvFileToString();
-        for (String csvDatum : csvData) {
-            if (csvDatum.equals(username)) {
+        for (String csvDatum : csvData)
+        {
+            if (csvDatum.equals(username))
+            {
                 return false;
             }
         }

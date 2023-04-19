@@ -6,14 +6,14 @@ import java.util.Scanner;
 
 public class CsvManager
 {
-    final int dataPerUser = 8; // The number of variables saved for each user
-    final String filePath = "userInformation.txt";
+    final int DATA_PER_USER = 8; // The number of variables saved for each user
+    final String FILE_PATH = "userInformation.txt";
     void checkFileExists()
     {
         // Used at the start of the program to make sure it can write to or read from a file
         try
         {
-            File file = new File(filePath);
+            File file = new File(FILE_PATH);
             if (file.createNewFile())
             {
                 System.out.println("A text file has been created to store the users information");
@@ -21,7 +21,7 @@ public class CsvManager
         }
         catch (IOException e)
         {
-            System.out.println("An error has occurred");
+            System.out.println("An error has occurred the text file required for the program is missing");
             e.printStackTrace();
         }
     }
@@ -31,7 +31,7 @@ public class CsvManager
         StringBuilder data = new StringBuilder();
         try
         {
-            File file = new File(filePath);
+            File file = new File(FILE_PATH);
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine())
             {
@@ -51,10 +51,10 @@ public class CsvManager
     User[] readCsvStringArrayToArrayOfUsers(String[] csvString)
     // Takes the array of Strings and writes it into an array of Users
     {
-        User[] theUsers = new User[(csvString.length / dataPerUser)]; // Size based on
+        User[] theUsers = new User[(csvString.length / DATA_PER_USER)]; // Size based on
         int dataPointer = 0;
 
-        for (int i = 0; i < (csvString.length / dataPerUser); i++)
+        for (int i = 0; i < (csvString.length / DATA_PER_USER); i++)
         {
             theUsers[i] = new User(csvString[dataPointer],
                     csvString[dataPointer + 1],
@@ -80,7 +80,7 @@ public class CsvManager
         try
         {
             // Writes the data separated by commas, so it can be easily split apart later
-            FileWriter writer = new FileWriter(filePath, true);
+            FileWriter writer = new FileWriter(FILE_PATH, true);
             writer.write("\n");
             writer.write(username +",");
             writer.write(salt + ",");

@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class CheckPlayerTypes
 {
+
+    // The functions used to check what types of player the user is, so they can be matched for group leaderboards
     String socializer()
     {
         Scanner sc = new Scanner(System.in);

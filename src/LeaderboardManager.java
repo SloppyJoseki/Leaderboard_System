@@ -2,11 +2,13 @@ public class LeaderboardManager
 {
     public int findUserIndex(User[] Users, String loggedInAs)
     {
+        // Returns the index of a user in an array based on username
         for (int i = 0; i < Users.length; i++) {
             if (Users[i].username.equals(loggedInAs)) {
                 return i;
             }
         }
+        // This should never execute
         return  0;
     }
     public User[] setUpSortedUserArray()
@@ -19,14 +21,14 @@ public class LeaderboardManager
         // Implementing a bubble sort to sort the user array by score
         for (int j = 0; j < theUsers.length - 1; j++)
         {
-            for (int q = 0; q < theUsers.length - 1; q++)
+            for (int q = 0; q < theUsers.length - j - 1; q++)
             {
                 User u = theUsers[q];
                 User next = theUsers[q + 1];
                 if (u.score < next.score)
                 {
-                    theUsers[q] = theUsers[q+1];
-                    theUsers[q+1] = u;
+                    theUsers[q] = theUsers[q + 1];
+                    theUsers[q + 1] = u;
                 }
             }
         }
@@ -34,6 +36,7 @@ public class LeaderboardManager
     }
     public void createGlobalLeaderboard()
     {
+        // Prints a sorted list of all users
         User[] theUsers = setUpSortedUserArray();
 
         int counter = 1;
@@ -45,6 +48,7 @@ public class LeaderboardManager
     }
     public void createGroupLeaderboards(String loggedInAs)
     {
+        // Prints a sorted list of leaderboards for all groups the user is in
         User[] theUsers = setUpSortedUserArray();
 
         int loggedInUserIndex = findUserIndex(theUsers, loggedInAs);

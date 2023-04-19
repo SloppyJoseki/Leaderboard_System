@@ -71,17 +71,21 @@ public class Main
         AccountManager userManager = new AccountManager();
         userManager.createAccount();
         SecurityManager securityManager = new SecurityManager();
+        // Creates a salt to ensure the users password is extra secure
         String salt = securityManager.addSalt();
+        // Hash the password, so it is not stored in plaintext and is less venerable
         String hashedPassword = securityManager.doHashing(salt, userManager.password);
+        // Creates a score for the player
         int randomNum = ThreadLocalRandom.current().nextInt(0, 1000 + 1);
         String score = Integer.toString(randomNum);
-        // Asks the player how they like to enjoy games, so we can create the group leaderboards later
+        // Asks the player how they like to enjoy games, so we can create the group leaderboards later based on Bartle
         CheckPlayerTypes check = new CheckPlayerTypes();
         String isSocializer = check.socializer();
         String isExplorer = check.explorer();
         String isAchiever = check.achiever();
         String isKiller = check.killer();
 
+        // Writes all the user data to the file
         CsvManager csvManager = new CsvManager();
         csvManager.writeDataToCsv(userManager.username,
                 salt,
